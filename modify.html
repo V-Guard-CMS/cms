@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Modify User</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" class="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+        <a onclick="history.back()">Home</a>
+    </div>
+    <div class = "table" id="c_table">
+        <div class="mod-us">MODIFY USER</div>
+          <div class = "grid-table">
+               <div id = "grid-value" class = "grid-data">
+                <div class="grid-header">ID</div>
+                <div class="grid-header">NAME</div>
+                <div  class="grid-header">DEPARTMENT</div>
+                <div  class="grid-header">EMAIL</div>
+                <div  class="grid-header">CATEGORY</div>
+                <div  class="grid-header">WALLET</div>
+                <div  class="grid-header">EDIT</div>
+                <div  class="grid-header">DELETE</div>
+             </div>
+          </div>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div id="form_container">
+                  <div id="form_header_container">
+                      <h2 id="form_header2"> UPDATE USER </h2>
+                  </div>
+                  <div id="form_content_container">
+                      <input type="text" id="user_id" placeholder="Faculty ID">
+                      <input type="text" id="full_name" placeholder="Full name">
+                      <div class="categ">
+                        <label for="cate" >DEPARTMENT</label>
+                            <select name="cate" id="dept">
+                              <option value="select">-SELECT-</option>
+                              <option value="STAFF">STAFF</option>
+                              <option value="WORKMEN">WORKMEN</option>
+                              <option value="CANDOR">CANDOR</option>
+                              <option value="VIP">VIP</option>
+                              <option value="YSF">YSF</option>
+                              <option value="VINAYAGA">VINAYAGA</option>
+                            </select>
+                      </div>
+                      <div class="categ">
+                        <label for="cate" >CATEGORY</label>
+                            <select name="cate" id="cat">
+                              <option value="select">-SELECT-</option>
+                              <option value="DAYSCHOLAR">DAYSCHOLAR</option>
+                              <option value="HOSTELER">HOSTELER</option>
+                            </select>
+                      </div>
+                      <input type="email" id="email" placeholder="Email">
+                      <input type="text" id="password" placeholder="New Password">
+                      <input type="text" id="wallet" placeholder="Wallet">
+                      <button id="edit_btn" onclick="editBtn()">Update</button>
+                  </div>
+              </div>
+        </div>
+    </div > 
+    
+      <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="modify.js"></script>
+</body>
+</html>

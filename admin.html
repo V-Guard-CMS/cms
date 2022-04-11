@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" class="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+        <a onclick="signOut()">Sign Out</a>
+        <a id="Add_User">Add User</a>
+        <a href="modify.html">Modify user</a>
+        <a id="top-up">Topup wallet</a>
+        <a id="total-count" style="display: none;">Total count</a>
+        <a href="report.html">Report</a>
+        <a onclick="refresh()">Home</a>
+    </div>
+
+    <div id="myModal1" class="modal1">
+        <!-- Modal content -->
+        <div class="modal-content1">
+          <span class="close1">&times;</span>
+          <h2 class="form_header"> Add Total Count </h2>
+          <input type="text" id="tol_count" placeholder="Total Count">
+          <button id="m_reg_btn" onclick="addCount()">Add</button>
+        </div>
+      
+    </div>
+    <div id="myModal2" class="modal1">
+      <!-- Modal content -->
+      <div class="modal-content1">
+        <span class="close2">&times;</span>
+          <h2 class="form_header"> Topup Wallet </h2>
+          <div class="categ">
+            <label for="category">CATEGORY</label>
+          <select name="category" id="cat">
+            <option value="select">-SELECT-</option>
+            <option value="DAYSCHOLAR">DAYSCHOLAR</option>
+            <option value="HOSTELER">HOSTELER</option>
+          </select>
+          </div><br>
+          <button id="m_reg_btn" onclick="topUp()">Add</button>
+      </div>  
+    </div>
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="form_container">
+              <div id="form_header_container">
+                  <h2 id="form_header"> ADD USER </h2>
+              </div>
+              <div id="form_content_container">
+                  <input type="text" id="user_id" placeholder="Employee Code">
+                  <input type="text" id="full_name" placeholder="Employee name">
+                  <div class="categ">
+                    <label for="cate" >DEPARTMENT</label>
+                        <select name="cate" id="dept">
+                          <option value="select">-SELECT-</option>
+                          <option value="STAFF">STAFF</option>
+                          <option value="WORKMEN">WORKMEN</option>
+                          <option value="CANDOR">CANDOR</option>
+                          <option value="VIP">VIP</option>
+                          <option value="YSF">YSF</option>
+                          <option value="VINAYAGA">VINAYAGA</option>
+                        </select>
+                  </div>
+                  <div class="categ">
+                    <label for="catg" >CATEGORY</label>
+                        <select name="catg" id="category">
+                          <option value="select">-SELECT-</option>
+                          <option value="DAYSCHOLAR">DAYSCHOLAR</option>
+                          <option value="HOSTEL">HOSTELER</option>
+                        </select>
+                  </div>
+                  <input type="email" id="email" placeholder="Email">
+                  <input type="text" id="password" placeholder="New Password">
+                  <input type="text" id="wallet" placeholder="Wallet">
+                  <button id="reg_btn" onclick="register()">Register</button>
+              </div>
+          </div>
+    </div>
+</div> 
+
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      const d = new Date();
+      var today = new Date();
+      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      var day = weekday[d.getDay()];
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+      document.getElementById("date").innerHTML = "Date : " + date;
+      document.getElementById("day").innerHTML = "Day : " + day;
+      document.getElementById("time").innerHTML = "Time : " + time;
+    </script>
+
+</body>
+</html>

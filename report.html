@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <title>Report</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" class="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+        <a onclick="IdSearch()">Employee-wise Report</a>
+        <a onclick="fullReport()">Monthly Report</a>
+        <a onclick="history.back()">Home</a>
+    </div>
+
+      <div id="full_rpt" style="display: block;">
+        <div class="rep_us">Monthly Report</div>
+        <div id="scr_bar">
+            <div>
+              <label for="frm_date">From</label>
+              <input type="text" id="from_date">
+              <label for="frm_date">To</label>
+              <input type="text" id="to_date">
+              <label for="dept_bar" id="dep">DEPARTMENT : </label>
+              <select name="dept_bar" id="dept_na">
+                <option value="ALL">ALL</option>
+                <option value="STAFF">STAFF</option>
+                <option value="WORKMEN">WORKMEN</option>
+                <option value="CANDOR">CANDOR</option>
+                <option value="VIP">VIP</option>
+                <option value="YSF">YSF</option>
+                <option value="VINAYAGA">VINAYAGA</option>
+              </select>
+            </div> 
+            <div>
+            <div  id="scr_bar1">
+              <button id="submit" onclick="getReport()">Submit</button>
+              <button id="submit" onclick="MonthReportExcel('xlsx')">Download</button>
+            </div>
+              <div id="amt_tv">
+                <div><b>Total Amount</b></div>
+                <div id="total_amt">0</div>
+                <div><b>Subsidy Amount</b></div>
+                <div id="monthsubamt">0</div>
+              </div>
+            </div>   
+          </div>
+          <table class="monthreport" id='monthreport'>
+            <tr>
+              <th>S.NO</th>
+              <th>DATE</th>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DEPARTMENT</th>
+              <th>CATEGORY</th>
+              <th>BREAKFAST</th>
+              <th>LUNCH</th>
+              <th>DINNER</th>
+              <th>AMOUNT</th>
+              <th>SUBSIDY</th>
+            </tr>
+            <tr></tr>
+          </table>
+
+          <script>
+          
+              function MonthReportExcel(type, fn, dl) {
+                  var elt = document.getElementById('monthreport');
+                  var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+                  return dl ?
+                      XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                      XLSX.writeFile(wb, fn || ('MonthReport.' + (type || 'xlsx')));
+              }
+            
+          </script>
+
+      </div>
+      <br>
+      <div id="day_wise_report" style="display: none;">
+        <div class="rep_us">Over All Report</div>
+        <div id="day_scr_bar">
+            <div>
+              <label for="frm_date">From</label>
+              <input type="text" id="day_from_date">
+              <label for="frm_date">To</label>
+              <input type="text" id="day_to_date">
+              <label for="dept_bar" id="day_dep">DEPARTMENT : </label>
+              <select name="dept_bar" id="dept_day">
+                <option value="ALL">ALL</option>
+                <option value="STAFF">STAFF</option>
+                          <option value="WORKMEN">WORKMEN</option>
+                          <option value="CANDOR">CANDOR</option>
+                          <option value="VIP">VIP</option>
+                          <option value="YSF">YSF</option>
+                          <option value="VINAYAGA">VINAYAGA</option>
+              </select>
+
+            </div> 
+        <div>
+          <button id="submit_day" onclick="dayReport()">Submit</button>
+          <button id="submit" onclick="OverallReportExcel('xlsx')">Download</button>
+        <div id="day_scr_bar1">
+
+        </div>
+
+              <div id="amt_tv_day">
+                <div>Total Amount</div>
+                <div id="total_amt_day">0</div>
+              </div>
+            </div>   
+          </div><br><br>
+          
+        <table class="overallreport" id="overallreport">
+          <thead>
+            <tr>
+              <th>TYPE</th>
+              <th>BREAKFAST</th>
+              <th>LUNCH</th>
+              <th>DINNER</th>
+            </tr>
+          </thead>
+        </table>
+
+        <script>
+          
+          function OverallReportExcel(type, fn, dl) {
+              var elt = document.getElementById('overallreport');
+              var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+              return dl ?
+                  XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                  XLSX.writeFile(wb, fn || ('OverallReport.' + (type || 'xlsx')));
+          }
+        
+        </script>
+
+      </div>
+      <br>
+      
+
+
+      <div id="Id_report">
+        <div class="rep_us">Employee-wise Report</div>
+        <label id="from" for="frm_date">From</label>
+        <input type="text" name="frm_date" id="id_from_date">
+        <label for="frm_date">To</label>
+        <input type="text" id="id_to_date">  
+        <input type="text" id="search_by_id" placeholder="Search by ID">
+        <button id="submit_id" onclick="IdReport()">Submit</button>
+        <button id="submit" onclick="IdReportExcel('xlsx')">Download</button>
+        <div id="id_scr_bar">
+            <div>
+              <div id="amt_tv_id">
+                <div id="name_div"><b>NAME</b></div>
+                <div id="name_tv"></div>
+                <div  id="dept_div"><b>DEPARTMENT</b></div>
+                <div id="dept_tv"></div>
+                <div  id="categ_div"><b>CATEGORY</b></div>
+                <div id="categ_tv"></div>
+                <div><b>Total Amount</b></div>
+                <div id="total_amt_id">0</div>
+                <div><b>Subsidy Amount</b></div>
+                <div id="subamt">0</div>
+              </div>
+            </div>   
+          </div><br>
+        <table class="idreport" id="idreport">
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>DATE</th>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DEPARTMENT</th>
+              <th>CATEGORY</th>
+              <th>BREAKFAST</th>
+              <th>LUNCH</th>
+              <th>DINNER</th> 
+              <th>AMOUNT</th>
+              <th>SUBSIDY</th>
+            </tr>
+          </thead>
+        </table>
+
+        <script>
+          
+          function IdReportExcel(type, fn, dl) {
+              var elt = document.getElementById('idreport');
+              var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+              return dl ?
+                  XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                  XLSX.writeFile(wb, fn || ('IdReport.' + (type || 'xlsx')));
+          }
+        
+        </script>
+
+      </div>
+
+      <br>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="report.js"></script>
+</html>

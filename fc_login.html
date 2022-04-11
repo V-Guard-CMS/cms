@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Food Court Login</title>
+</head>
+<style>
+  body {
+      text-align: "center";
+      background-image: url(background.jpg);
+      background-size: 100%;
+   }
+</style>
+<body>
+    <div class="navbar">
+        <img id="logo" class="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+      </div>
+      <div class="image-slider__cell">
+          <div class="image-slider__curve"></div>
+      </div>
+      <div class="main">
+        <p class="sign" >Canteen Login</p>
+        <form class="form1">
+          <input id="fc_email" type="text" placeholder="Email ID">
+          <input id="fc_password" type="password" placeholder="Password">
+          <a id="admin_sigin" onclick="fcLogin()"><b>Login</b></a>       
+        </div>
+      </div>
+    </form>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

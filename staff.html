@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>Staff Panel</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+        <a onclick="staff_signOut()">Sign Out</a>
+        <a href="staff_report.html">Report</a>
+        <a onclick="orderNow()">Order Now</a>
+    </div>
+
+    <div class="image-slider__cell">
+      <div class="image-slider__curve"></div>
+    </div>
+    <div id="ct">
+      <div id="to_count">
+        <div>Welcome back!</div>
+        <div id="staff_name"></div>
+      </div>
+        <div id="to_count">
+          <div>Wallet</div>
+          <div id="wallet_amt">0</div>
+        </div>
+      </div>
+      
+      <div>
+        <div class = "allTable" id="AllTable">
+          <div class="rep_us">ORDER LIST</div>
+          <div id = "grid-valueAll" class = "grid-data_all">
+            <div><b>ORDER NO</b></div>
+            <div><b>DATE</b></div>
+            <div><b>ID</b></div>
+            <div><b>NAME</b></div>
+            <div><b>DEPARTMENT</b></div>
+            <div><b>BREAK FAST</b></div>
+            <div><b>LUNCH</b></div>
+            <div><b>DINNER</b></div>
+            <div><b>DESCRIPTION</b></div>
+            <div><b>AMOUNT</b></div>
+            <div><b>CONFIRMATION</b></div>
+          </div>
+        </div>
+      </div>
+      <div id="myModal" class="order_modal">
+        <div class="od_modal-content">
+          <span class="close">&times;</span>
+          <div id="form_container">
+                  <div id="form_header_container">
+                      <h2 id="order_header"> Order List </h2>
+                  </div><br>
+                  <div id="order_container">
+                    <div id="od_list">
+                        <label for="tea" id="tea_lb">BREAK FAST</label>
+                        <select name="tea" id="tea_qnt">
+                        </select>
+                    </div>
+                    <div id="od_list">
+                        <label for="coffee" id="coffee_lb">LUNCH</label>
+                        <select name="coffee" id="coffee_qnt">
+                        </select>
+                    </div>
+                    <div id="od_list">
+                        <label id="snacks_lb">DINNER</label>
+                        <select name="snacks" id="snack_qnt">
+                        </select>
+                    </div><br>
+                    <input type="text" id="desc_order" placeholder="DESCRIPTION">
+                    <button id="place_order" onclick="placeOrder()">Place Order</button>
+                  </div>
+              </div>
+        </div>
+    </div > 
+</body>
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="staff.js"></script>
+</html>

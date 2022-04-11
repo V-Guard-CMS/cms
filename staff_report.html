@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <title>Report</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" class="logo" src="download.png" alt="logo">
+        <a id="title">CANTEEN MANAGEMENT SYSTEM</a>
+        <a onclick="history.back()">Home</a>
+    </div>
+
+    <div id="Id_report" style="display: block;">
+        <div class="rep_us">Employee-wise Report</div>
+        <label id="from" for="frm_date">From</label>
+        <input type="text" name="frm_date" id="id_from_date">
+        <label for="frm_date">To</label>
+        <input type="text" id="id_to_date"> 
+        <button id="submit_id" onclick="IdReport()">Submit</button>
+        <button id="submit" onclick="IdReportExcel('xlsx')">Download</button>
+        <div id="id_scr_bar">
+            <div>
+              <div id="amt_tv_id">
+                <div id="name_div"><b>NAME</b></div>
+                <div id="name_tv"></div>
+                <div  id="dept_div"><b>DEPARTMENT</b></div>
+                <div id="dept_tv"></div>
+                <div><b>Total Amount</b></div>
+                <div id="total_amt_id">0</div>
+                <div><b>Subsidy Amount</b></div>
+                <div id="subamt">0</div>
+              </div>
+            </div>   
+          </div><br>
+        <table class="idreport" id="idreport">
+          <thead>
+            <tr>
+              <th>S.NO</th>
+              <th>DATE</th>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DEPARTMENT</th>
+              <th>CATEGORY</th>
+              <th>BREAKFAST</th>
+              <th>LUNCH</th>
+              <th>DINNER</th> 
+              <th>AMOUNT</th>
+              <th>SUBSIDY</th>
+            </tr>
+          </thead>
+        </table>
+
+        <script>
+          
+          function IdReportExcel(type, fn, dl) {
+              var elt = document.getElementById('idreport');
+              var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+              return dl ?
+                  XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                  XLSX.writeFile(wb, fn || ('IdReport.' + (type || 'xlsx')));
+          }
+        
+        </script>
+
+    <br>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="staff_report.js"></script>
+</html>
